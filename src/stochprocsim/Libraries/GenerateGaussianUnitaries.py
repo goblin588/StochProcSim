@@ -3,8 +3,8 @@ import numpy as np
 import itertools
 import os 
 
-from CausalModels import *
-from Libraries.OpticsLib import *
+from ..CausalModels import *
+from .OpticsLib import *
 
 # Define symbols only for convenience
 Φm1, Φm2, Φm3 = sp.symbols('Φm1 Φm2 Φm3')

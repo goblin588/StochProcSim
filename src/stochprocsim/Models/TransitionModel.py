@@ -1,6 +1,6 @@
 import sympy as sp
 import pandas as pd 
-import numpy as np 
+
 from ..CausalModels import Causal_Models, flipped
 
 α, β = sp.symbols('α β')
@@ -68,22 +68,6 @@ class QuantumTransitionModel(TransitionModel):
             v24 = sp.Matrix([[v[1]],[v[3]]])
         α, β = v13.norm(), v24.norm()
         return α**2, β**2
-
-class QuantumOptTransitionModel(TransitionModel):
-    """
-    Optics matrix path 1 and 2 are cols 0,1 and 2,3
-    """
-    def __init__(self, model):
-        super().__init__(model)
-        self.title = 'Quantum Opt'
-        
-    def get_output_probabilities(self, N, j):
-        v = self.model.U@self.model.states[j]
-        v13 = sp.Matrix([[v[2]],[v[3]]])
-        v24 = sp.Matrix([[v[0]],[v[1]]])
-        α, β = v13.norm(), v24.norm()
-        return α**2, β**2
-
 
 def print_model_probabilities():
     for model in Causal_Models.values(): 

@@ -3,10 +3,6 @@ import numpy as np
 from .CausalModels import *
 from .Models.TransitionModel import QuantumTransitionModel, ExactTransitionModel, TransitionModel
 
-# model = CS_3
-# nphotons = 10000
-# M = 100
-
 class Simulator():
     def __init__(self, transition_model: TransitionModel, nphotons:int=None , mrepetitions:int=None):
         self.transition_model = transition_model

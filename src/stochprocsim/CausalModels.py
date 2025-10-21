@@ -1,6 +1,6 @@
 import numpy as np
 from .Libraries.OpticsLib import getUtot
-from .Unitaries import *
+from .Models.Unitaries import *
 
 flipped = True
 
@@ -32,7 +32,6 @@ class CausalModel():
     def __len__(self):
         return len(self.states)-1
 
-
 def reorder_matrix(U: sp.Matrix, row_order: list[int], col_order: list[int]) -> sp.Matrix:
     """
     Return a reordered copy of U with rows and columns rearranged according to
@@ -54,23 +53,21 @@ def reorder_states(states: list[sp.Matrix], order: list[int]) -> list[sp.Matrix]
         reordered_matrices.append(sp.Matrix(reordered))
     return reordered_matrices
 
-
-
 #region Unitary Angles 
 Φm1, Φm2, Φm3 = sp.symbols('Φm1 Φm2 Φm3')
 θh1, θq1, θh2, θq2, θhin2, θqin2, θhf1, θqf1, θhf2, θqf2, pipi = sp.symbols('θh1 θq1 θh2 θq2 θhin2 θqin2 θhf1 θqf1 θhf2 θqf2 pipi')
 
 U_3_angles = {
-    "θh1": np.rad2deg(1.50111),
-    "θq1": np.rad2deg(5.9303),
-    "θh2": np.rad2deg(0.784613),  
-    "θq2": np.rad2deg(1.56909),    
-    "θhin2": np.rad2deg(2.42354),
-    "θqin2": np.rad2deg(0.0832295),
-    "θhf1": np.rad2deg(1.12269),
-    "θqf1": np.rad2deg(1.38684),
-    "θhf2": np.rad2deg(1.17508),
-    "θqf2": np.rad2deg(1.40934),   
+    "θh1": np.rad2deg(1.57158),
+    "θq1": np.rad2deg(0.0017101),
+    "θh2": np.rad2deg(3.99667),
+    "θq2": np.rad2deg(1.92368),
+    "θhin2": np.rad2deg(1.58668),
+    "θqin2": np.rad2deg(4.79562),
+    "θhf1": np.rad2deg(4.31667),
+    "θqf1": np.rad2deg(4.55094),
+    "θhf2": np.rad2deg(5.83508),
+    "θqf2": np.rad2deg(1.38684),
     "pipi": 2.03774,
     "Φm1": 3.16,
     "Φm2": 3.77,
@@ -78,51 +75,51 @@ U_3_angles = {
 }
 
 U_4_angles = {
-   "θh1": np.rad2deg(2.01952),
-    "θq1": np.rad2deg(3.53968),
-    "θh2": np.rad2deg(0.789311),
-    "θq2": np.rad2deg(3.14186),
-    "θhin2": np.rad2deg(3.1951),
-    "θqin2": np.rad2deg(1.51534),
-    "θhf1": np.rad2deg(2.42808),
-    "θqf1": np.rad2deg(1.3256),
-    "θhf2": np.rad2deg(2.75082),
-    "θqf2": np.rad2deg(0.211462),
-    "pipi": 0.256997,
+    "θh1": np.rad2deg(3.144),
+    "θq1": np.rad2deg(0.0),
+    "θh2": np.rad2deg(0.845031),
+    "θq2": np.rad2deg(2.74251),
+    "θhin2": np.rad2deg(0.710524),
+    "θqin2": np.rad2deg(0.0),
+    "θhf1": np.rad2deg(2.54209),
+    "θqf1": np.rad2deg(4.49778),
+    "θhf2": np.rad2deg(5.83761),
+    "θqf2": np.rad2deg(3.40202),
+    "pipi": 0.270094,
     "Φm1": 3.16,
     "Φm2": 3.77,
     "Φm3": 3.74
 }
 
 U_5_angles = {
-      "θh1": np.rad2deg(0.785409),
-    "θq1": np.rad2deg(4.71247),
-    "θh2": np.rad2deg(0.200637),
-    "θq2": np.rad2deg(2.98196),
-    "θhin2": np.rad2deg(1.73607),
-    "θqin2": np.rad2deg(2.97305),
-    "θhf1": np.rad2deg(1.81102),
-    "θqf1": np.rad2deg(1.29749),
-    "θhf2": np.rad2deg(4.96516),
-    "θqf2": np.rad2deg(1.34278),
-    "pipi": 1.28287,
+    "θh1": np.rad2deg(1.5707),
+    "θq1": np.rad2deg(1.57092),
+    "θh2": np.rad2deg(2.48831),
+    "θq2": np.rad2deg(4.44748),
+    "θhin2": np.rad2deg(2.751),
+    "θqin2": np.rad2deg(1.2807),
+    "θhf1": np.rad2deg(4.1716),
+    "θqf1": np.rad2deg(2.91341),
+    "θhf2": np.rad2deg(2.83674),
+    "θqf2": np.rad2deg(4.93841),
+    "pipi": 3.97891,
     "Φm1": 3.16,
     "Φm2": 3.77,
     "Φm3": 3.74,
 }
 
 U_6_angles = {
-     "θh1": np.rad2deg(1.22409),
-    "θq1": np.rad2deg(5.17233),
-    "θh2": np.rad2deg(1.2245),
-    "θq2": np.rad2deg(1.22229),
-    "θhin2": np.rad2deg(2.39107),
-    "θqin2": np.rad2deg(0.00535124),
-    "θhf1": np.rad2deg(1.72019),
-    "θqf1": np.rad2deg(2.17305),
-    "θhf2": np.rad2deg(1.38507),
-    "θqf2": np.rad2deg(1.18738),
-    "pipi": 1.35733,
+    "θh1": np.rad2deg(1.57076),
+    "θq1": np.rad2deg(4.71234),
+    "θh2": np.rad2deg(5.99134),
+    "θq2": np.rad2deg(3.60292),
+    "θhin2": np.rad2deg(3.1633),
+    "θqin2": np.rad2deg(2.21049),
+    "θhf1": np.rad2deg(4.61802),
+    "θqf1": np.rad2deg(2.06573),
+    "θhf2": np.rad2deg(5.65754),
+    "θqf2": np.rad2deg(5.72802),
+    "pipi": 0.192194,
     "Φm1": 3.16,
     "Φm2": 3.77,
     "Φm3": 3.74
