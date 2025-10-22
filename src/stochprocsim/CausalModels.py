@@ -138,11 +138,20 @@ if flipped == True:
                         states=reorder_states(U_6_states, [1, 3, 0, 2]), angles=U_6_angles, name='U_6')
 
 else:
-    # Models
+    # CS_3 = CausalModel(U=reorder_matrix(reorder_matrix(U_3, [1, 3, 0, 2], [1, 3, 0, 2]),[2,0,3,1],[2,0,3,1]), 
+    #                     states=reorder_states(reorder_states(U_3_states, [1, 3, 0, 2]), [2,0,3,1]), angles=U_3_angles, name='U_3')
+    # CS_4 = CausalModel(U=reorder_matrix(U_4, [1, 3, 0, 2], [1, 3, 0, 2]),[2,0,3,1],[2,0,3,1]), 
+    #                     states=reorder_states(reorder_states(U_4_states, [1, 3, 0, 2]), [2,0,3,1]), angles=U_4_angles, name='U_4')
+    # CS_5 = CausalModel(U=reorder_matrix(reorder_matrix(U_5, [1, 3, 0, 2], [1, 3, 0, 2]),[2,0,3,1],[2,0,3,1]), 
+    #                     states=reorder_states(reorder_states(U_5_states, [1, 3, 0, 2]), [2,0,3,1]), angles=U_5_angles, name='U_5')
+    # CS_6 = CausalModel(U=reorder_matrix(reorder_matrix(U_6, [1, 3, 0, 2], [1, 3, 0, 2]),[2,0,3,1],[2,0,3,1]), 
+    #                     states=reorder_states(reorder_states(U_6_states, [1, 3, 0, 2]), [2,0,3,1]), angles=U_6_angles, name='U_6')
+    # # Models
     CS_3 = CausalModel(U=U_3, states=U_3_states, angles=U_3_angles, name='U_3')
     CS_4 = CausalModel(U=U_4, states=U_4_states, angles=U_4_angles, name='U_4')
     CS_5 = CausalModel(U=U_5, states=U_5_states, angles=U_5_angles, name='U_5')
     CS_6 = CausalModel(U=U_6, states=U_6_states, angles=U_6_angles, name='U_6')
+
 
 Causal_Models = {
     3: CS_3,

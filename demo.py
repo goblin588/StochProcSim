@@ -17,7 +17,7 @@ def _():
     from stochprocsim.SimulationSampler import Simulator
     from stochprocsim.Models.TransitionModel import QuantumTransitionModel, ExactTransitionModel, TransitionModel
     from stochprocsim.CausalModels import Causal_Models
-    
+
     return (
         Causal_Models,
         QuantumTransitionModel,
@@ -33,7 +33,7 @@ def _():
 
 @app.cell
 def _(Causal_Models, sp):
-    def is_unitary(U, tol=1e-8):
+    def is_unitary(U, tol=1e-7):
         U = sp.Matrix(U)
         prod = U * U.H
         # Check each element numerically
@@ -49,6 +49,7 @@ def _(Causal_Models, sp):
         return True
 
     for idx, model in Causal_Models.items():
+        model.set_U_mat()
         print(f"Model {idx} unitary: {is_unitary(model.U)}")
     return
 
@@ -59,12 +60,15 @@ def _(Causal_Models, sp):
     from stochprocsim.CausalModels import reorder_matrix, reorder_states, CausalModel
     N = 3
     m = Causal_Models[N]
-    m.set_U_optics()
-    U = sp.Matrix(m.U)
-    r = reorder_matrix(U, [2,0,1,3],[2,0,1,3])
-    s = reorder_states(m.states, [2,0,1,3])
+    m.set_U_mat()
+    U_theo = sp.Matrix(m.U)
 
-    cs = CausalModel(U=r, states=s)
+    m.set_U_optics()
+    U_mathematica = sp.Matrix(m.U)
+
+    tol = 1e-8
+    diff = U_theo - U_mathematica
+    diff.applyfunc(lambda x: 0 if abs(complex(x)) < tol else sp.N(x))
     return
 
 

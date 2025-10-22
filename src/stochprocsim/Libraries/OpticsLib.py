@@ -108,4 +108,5 @@ def getUtot(angles):
 
     # U = HWPf2@QWPf12@HWPf@QWPf1@PBS_dag@M3@M2@M1@HWP12@QWP12@HWP1@QWP1@PBS
     U = np.exp(1j*p)*(HWPf2@QWPf12@HWPf@QWPf1@PBS_dag@M3@M2@M1@HWP12@QWP12@HWP1@QWP1@PBS@HWPin2@QWPin12)
+    
     return U
